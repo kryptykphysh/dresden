@@ -5,6 +5,7 @@ gem 'rails', '4.0.2'
 
 gem 'haml-rails'
 gem 'figaro'
+gem 'simple_form'
 
 group :assets do
   # Use SCSS for stylesheets
