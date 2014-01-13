@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 gem 'haml-rails'
 gem 'figaro'
 gem 'simple_form'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
