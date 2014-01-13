@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Dresden::Application.config.secret_key_base = '990cfc5328fee352e843f3d49bca30b180ca3a1bbf729b43986e34a18f2f255693313217d3a7b0ed3076b276764b02a40a1d29bd8d71998ae8430811e1307a6b'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Dresden::Application.config.secret_key_base = secure_token
