@@ -1,0 +1,12 @@
+.navbar-fixed-top.navbar-inverse{ role: 'navigation' }
+  .navbar-header
+    %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#collapsed-navbar' }}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar      
+    = link_to 'OotA', root_path, class: 'navbar-brand'
+
+  .collapse.navbar-collapse#collapsed-navbar
+    %ul.nav.navbar-nav.pull-right
+      %li= link_to 'Login', '#'

@@ -51,8 +51,8 @@ Spork.prefork do
     config.order = "random"
 
     config.include Capybara::DSL
+    # config.include Rails.application.routes.url_helpers
   end
-
 end
 
 Spork.each_run do

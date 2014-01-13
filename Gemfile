@@ -7,13 +7,11 @@ gem 'haml-rails'
 gem 'figaro'
 gem 'simple_form'
 
-group :assets do
-  # Use SCSS for stylesheets
-  gem 'sass-rails', '~> 4.0.0'
-  gem 'bootstrap-sass', '~> 3.0.3.0'
-  gem 'will_paginate'
-  gem 'bootstrap-will_paginate'
-end
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
