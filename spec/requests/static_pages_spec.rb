@@ -13,8 +13,27 @@ describe "Static Pages" do
     subject { page }
 
     it { should have_title 'Order of the Asparagus: Dresden Files' }
-    it { should have_link 'Login' }
     it { should have_content 'Welcome to the Order of the Asparagus in the '\
                              'Dresdenverse.' }
+    it { should have_link 'Campaigns' }
+    it { should have_link 'Characters' }
+
+    context 'when not logged in' do
+      it { should have_link 'Login with Google' }      
+    end
+
+    context 'when logged in' do
+      before { click_link 'Login with Google' }
+
+      it { should have_link 'Test User' }
+      it { should have_link 'Sign Out' }
+      it { should have_link 'Profile' }
+
+      context 'after logging out' do
+        before { click_link 'Sign Out'}
+
+        it { should have_link 'Login with Google' }
+      end
+    end
   end
 end
