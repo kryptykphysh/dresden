@@ -9,10 +9,10 @@ describe "Static Pages" do
       response.status.should be(200)
     end
 
-    before { visit root_url }
+    before { visit root_path }
     subject { page }
 
-    it { should have_title 'Order of the Asparagus: Dresden Files' }
+    it { should have_title 'Order of the Asparagus | Dresden' }
     it { should have_content 'Welcome to the Order of the Asparagus in the '\
                              'Dresdenverse.' }
     it { should have_link 'Campaigns' }
@@ -23,9 +23,13 @@ describe "Static Pages" do
     end
 
     context 'when logged in' do
-      before { click_link 'Login with Google' }
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        login_as(user, scope: :user)
+        visit root_path
+      end
 
-      it { should have_link 'Test User' }
+      it { should have_link user.name }
       it { should have_link 'Sign Out' }
       it { should have_link 'Profile' }
 

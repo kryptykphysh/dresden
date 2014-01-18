@@ -1,0 +1,9 @@
+.panel.panel-default
+  .panel-heading= link_to campaign.name, campaign
+  .panel-body
+    %dl.dl-horizontal
+      %dt Description
+      %dd= simple_format(campaign.description)
+
+      %dt Last Updated
+      %dd= campaign.updated_at.strftime("%A, %F %H:%M")

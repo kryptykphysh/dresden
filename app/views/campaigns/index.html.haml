@@ -1,0 +1,8 @@
+- provide :title, 'Campaigns'
+
+%h1 Campaigns
+%h2= "#{pluralize(@campaigns.count, 'campaign')} on system!"
+= link_to 'Create A New Campaign', new_campaign_path, class: 'btn btn-primary inline' if current_user
+= will_paginate @campaigns, class: 'inline'
+= render @campaigns
+= will_paginate @campaigns
