@@ -1,4 +1,12 @@
 class CampaignsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
+  # before_filter do
+  #   unless current_user
+  #     flash[:alert] = 'You must be logged in to perform this action.'
+  #     redirect_to root_path
+  #   end
+  # end
+
   def index
     @campaigns = Campaign.all.paginate(page: params[:page], limit: 10)
   end
@@ -8,15 +16,11 @@ class CampaignsController < ApplicationController
   end
 
   def new
-    if current_user
-      @campaign = Campaign.new
-    else
-      flash[:alert] = "You must be logged in."
-      redirect_to root_path
-    end
+    @campaign = Campaign.new
   end
 
   def create
+    @campaign = Campaign.new(campaign_params)
   end
 
   def edit
@@ -26,5 +30,11 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def campaign_params
+    require(:campaign).permit(:name, :description)
   end
 end

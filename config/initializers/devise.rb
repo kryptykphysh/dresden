@@ -252,6 +252,12 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
+  # Custom authentication failure for Devise
+  config.warden do |manager|
+    require Rails.root.join('lib/devise_custom_failure')
+    manager.failure_app = CustomFailure
+  end
+
   # Configure devise to use Google Omniauth
   require "omniauth-google-oauth2"
   config.omniauth :google_oauth2, ENV["GOOGLE_APP_ID"], ENV["GOOGLE_APP_SECRET"], { access_type: "offline", approval_prompt: "" }

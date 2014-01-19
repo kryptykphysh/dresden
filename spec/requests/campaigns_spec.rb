@@ -50,7 +50,8 @@ describe 'Campaigns' do
 
       it 'should display an alert' do
         alert = page.find_by_id('flash_alert')
-        alert.should have_content 'You must be logged in.'
+        alert.should have_content 'You need to sign in or sign up before ' \
+          'continuing.'
       end
     end
 
