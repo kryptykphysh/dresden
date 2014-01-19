@@ -66,7 +66,7 @@ describe 'Campaigns' do
       it { should have_title full_title('New Campaign') }
       it { should have_selector '#campaign_name' }
       it { should have_selector '#campaign_description' }
-      it { should have_content 'Create Campaign' }
+      it { should have_button 'Create Campaign' }
 
       after(:all) { Warden.test_reset! }     
     end
