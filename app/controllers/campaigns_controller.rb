@@ -1,11 +1,5 @@
 class CampaignsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
-  # before_filter do
-  #   unless current_user
-  #     flash[:alert] = 'You must be logged in to perform this action.'
-  #     redirect_to root_path
-  #   end
-  # end
 
   def index
     @campaigns = Campaign.all.paginate(page: params[:page], limit: 10)
