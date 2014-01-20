@@ -5,5 +5,8 @@
       %dt Description
       %dd= simple_format(campaign.description)
 
+      %dt Gamemaster
+      %dd= campaign.gamemaster.name
+
       %dt Last Updated
       %dd= campaign.updated_at.strftime("%A, %F %H:%M")

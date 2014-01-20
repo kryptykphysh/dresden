@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe 'Campaigns' do
-  before { 50.times { FactoryGirl.create(:campaign) } }
+  before { 15.times { FactoryGirl.create(:campaign) } }
   subject { page }
 
   describe 'index page' do
     before do
-      c = Campaign.find(50)
+      c = Campaign.find(15)
       c.update_attribute(:updated_at, Time.now + 1.day)
       c.save
 

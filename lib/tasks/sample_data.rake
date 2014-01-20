@@ -21,9 +21,11 @@ namespace :db do
     50.times do |n|
       name          = Faker::Company.name
       description   = Faker::Lorem.paragraphs(2).join("\n\n")
+      gamemaster_id = User.offset(rand(User.count)).pluck(:id).first
       Campaign.create!(
-        name:         name,
-        description:  description
+        name:           name,
+        description:    description,
+        gamemaster_id:  gamemaster_id
       )
     end
   end
