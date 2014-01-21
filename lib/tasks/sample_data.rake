@@ -22,11 +22,14 @@ namespace :db do
       name          = Faker::Company.name
       description   = Faker::Lorem.paragraphs(2).join("\n\n")
       gamemaster_id = User.offset(rand(User.count)).pluck(:id).first
-      Campaign.create!(
+      c = Campaign.create!(
         name:           name,
         description:    description,
         gamemaster_id:  gamemaster_id
       )
+      (User.all.shuffle[0..rand(1..4)] - [c.gamemaster]).each do |player|
+        c.players << player
+      end
     end
   end
 end

@@ -10,6 +10,9 @@ FactoryGirl.define do
   factory :campaign do
     name            Faker::Company.name
     description     Faker::Lorem.paragraphs(2).join("\n\n")
-    association :gamemaster, factory: :user
+    association     :gamemaster, factory: :user
+    # association     :players, factory: user
+    # association     :players, factory: user
+    # association     :players, factory: user
   end
 end

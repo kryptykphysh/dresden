@@ -8,5 +8,8 @@
       %dt Gamemaster
       %dd= campaign.gamemaster.name
 
+      %dt Players
+      %dd= campaign.players.map { |player| player.name }.join(', ')
+
       %dt Last Updated
       %dd= campaign.updated_at.strftime("%A, %F %H:%M")

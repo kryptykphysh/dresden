@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Campaign do
   before(:all) do
-    15.times { create :campaign }
+    15.times { FactoryGirl.create :campaign }
   end
 
   subject { build(:campaign) }
@@ -11,6 +11,7 @@ describe Campaign do
     it { should respond_to :name }
     it { should respond_to :description }
     it { should respond_to :gamemaster }
+    it { should respond_to :players }
     it { should be_valid }
 
     context 'without a name' do
@@ -41,6 +42,12 @@ describe Campaign do
 
     describe ':gamemaster' do
       its(:gamemaster) { should be_an_instance_of User }
+    end
+
+    describe ':players' do
+      it 'should be a collection of Users' do
+        subject.players.all? { should be_an_instance_of User }
+      end
     end
   end
 

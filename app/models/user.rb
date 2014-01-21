@@ -2,10 +2,15 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :rememberable, :trackable, :validatable,
-         :omniauthable, :database_authenticatable, :registerable, :recoverable
+         :omniauthable, :database_authenticatable#, :registerable, :recoverable
 
-  has_many :gamemastered_campaigns, class_name: 'Campaign',
-                                    foreign_key: 'gamemaster_id'
+  has_many  :gamemastered_campaigns,
+            class_name: 'Campaign',
+            foreign_key: 'gamemaster_id'
+  has_and_belongs_to_many :played_campaigns,
+                          class_name: 'Campaign',
+                          join_table: :campaigns_players
+
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info

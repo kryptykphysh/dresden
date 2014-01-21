@@ -14,11 +14,11 @@ describe 'Campaigns' do
     end
 
     it { should have_title full_title('Campaigns') }
-    it { should have_link Campaign.find(50).name }
-    it { should have_content 'Description' }
+    it { should have_link Campaign.find(15).name }
     it { should have_selector 'h2', 
       text: "#{pluralize(Campaign.count, 'campaign')} on system!"}
     it { should have_selector '.panel', count: 10 }
+    it { should have_content 'Description' }
   end
 
   context 'when not signed in' do
