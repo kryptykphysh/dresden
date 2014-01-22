@@ -1,5 +1,8 @@
 .panel.panel-default
-  .panel-heading= link_to campaign.name, campaign
+  .panel-heading
+    %p<
+      %h5= link_to campaign.name, campaign
+      = link_to 'Edit', edit_campaign_path(campaign), class: 'pull-right btn btn-info btn-sm'
   .panel-body
     %dl.dl-horizontal
       %dt Description

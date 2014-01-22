@@ -31,7 +31,7 @@ describe "Static Pages" do
 
       it { should have_link user.name }
       it { should have_link 'Sign Out' }
-      it { should have_link 'Profile' }
+      it { should have_link 'Profile', user_path(user) }
 
       context 'after logging out' do
         before { click_link 'Sign Out'}

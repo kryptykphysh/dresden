@@ -16,9 +16,14 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
+    @campaign.gamemaster = current_user
+    @campaign.save
+
+    redirect_to edit_campaign_path(@campaign)
   end
 
   def edit
+    @campaign = Campaign.find(params[:id])
   end
 
   def update
@@ -30,6 +35,6 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-    require(:campaign).permit(:name, :description)
+    params.require(:campaign).permit(:name, :description)
   end
 end

@@ -72,4 +72,38 @@ describe 'Campaigns' do
       after(:all) { Warden.test_reset! }     
     end
   end
+
+  describe 'creating a new campaign' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:name) { 'A Test Campaign' }
+    let(:description) { 'Some descriptive text here.' }
+
+    context 'when logged in' do
+      before do
+        login_as(user, scope: :user)
+        visit new_campaign_path
+        fill_in 'campaign_name', with: name
+        fill_in 'campaign_description', with: description
+        click_button 'Create Campaign'
+      end
+
+      it 'should redirect to campaign edit page' do
+        current_path.should == edit_campaign_path(Campaign.first)
+      end
+    end
+
+    context 'when not logged in' do
+      before { visit new_campaign_path }
+
+      it 'should redirect to root_path' do
+        current_path.should == root_path
+      end
+
+      it 'should display an alert' do 
+        alert = page.find_by_id('flash_alert')
+        alert.should have_content 'You need to sign in or sign up before ' \
+                                  'continuing.'
+      end
+    end
+  end
 end
