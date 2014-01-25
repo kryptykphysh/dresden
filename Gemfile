@@ -10,6 +10,9 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+# Allows use of ActiveRecord session store
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.0.3.0'

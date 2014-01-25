@@ -38,6 +38,8 @@ describe "Static Pages" do
 
         it { should have_link 'Login with Google' }
       end
+
+      after{ Warden.test_reset! }
     end
   end
 end

@@ -5,6 +5,15 @@ GIT
     database_cleaner (1.2.0)
 
 GIT
+  remote: git://github.com/rails/activerecord-session_store.git
+  revision: 55dc59aff9a1101c52004c0604bb88418624ba96
+  specs:
+    activerecord-session_store (0.1.0)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
+
+GIT
   remote: git://github.com/sporkrb/spork-rails.git
   revision: 0dd45e59d3237b4c8f9efc215b46d9c07072a95e
   specs:
@@ -275,6 +284,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-session_store!
   bcrypt-ruby (~> 3.1.2)
   better_errors
   binding_of_caller

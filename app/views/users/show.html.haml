@@ -1,0 +1,13 @@
+- provide :title, @user.name
+
+%h1= @user.name
+
+.panel.panel-default
+  .panel-body
+    %dl.dl-horizontal
+      %dt Gamemastered Campaigns
+      %dd= link_to pluralize(@user.gamemastered_campaigns.count, 'campaign'),    '#'
+
+      %dt Played Campaigns
+      %dd= link_to pluralize(@user.played_campaigns.count, 'campaign'),
+            '#'

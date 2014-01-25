@@ -5,6 +5,18 @@ FactoryGirl.define do
     provider            'google_oauth2'
     sequence(:uid)      { |n| "1234567890#{n}" }
     password            '!@#$%^&*()'
+
+    factory :user_with_gmd_campaigns do
+      after(:create) do |user|
+        create_list(:campaign, rand(0..2), gamemaster: user)
+      end
+    end
+
+    factory :user_with_played_campaigns do
+      after(:create) do |user|
+        create_list(:campaign, rand(1..5), players: [user])
+      end
+    end    
   end
 
   factory :campaign do
