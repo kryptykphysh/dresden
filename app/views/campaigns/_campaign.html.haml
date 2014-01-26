@@ -1,18 +1,21 @@
 .panel.panel-default
   .panel-heading
-    %p<
-      %h5= link_to campaign.name, campaign
-      = link_to 'Edit', edit_campaign_path(campaign), class: 'pull-right btn btn-info btn-sm'
+    %h5
+      = link_to campaign.name, campaign
+      - if current_user == campaign.gamemaster
+        = link_to 'Edit', edit_campaign_path(campaign), class: 'pull-right btn btn-info btn-sm'
   .panel-body
     %dl.dl-horizontal
       %dt Description
       %dd= simple_format(campaign.description)
 
       %dt Gamemaster
-      %dd= campaign.gamemaster.name
+      %dd= link_to campaign.gamemaster.name, user_path(campaign.gamemaster), class: 'btn btn-info btn-sm bottom-buffer'
 
       %dt Players
-      %dd= campaign.players.map { |player| player.name }.join(', ')
+      %dd
+        - campaign.players.each do |player|
+          = link_to player.name, user_path(player), class: 'btn btn-info btn-sm bottom-buffer'
 
       %dt Last Updated
       %dd= campaign.updated_at.strftime("%A, %F %H:%M")

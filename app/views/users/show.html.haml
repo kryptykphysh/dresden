@@ -2,12 +2,23 @@
 
 %h1= @user.name
 
-.panel.panel-default
-  .panel-body
-    %dl.dl-horizontal
-      %dt Gamemastered Campaigns
-      %dd= link_to pluralize(@user.gamemastered_campaigns.count, 'campaign'),    '#'
+#accordion.panel-group
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        = link_to "#{pluralize(@user.gamemastered_campaigns.count, 'campaign')} gamemastered", '#gamemastered-campaigns-list', data: { toggle: 'collapse', parent: '#accordion' }
 
-      %dt Played Campaigns
-      %dd= link_to pluralize(@user.played_campaigns.count, 'campaign'),
-            '#'
+    #gamemastered-campaigns-list.panel-collapse.collapse.in
+      .panel-body
+        - @user.gamemastered_campaigns.each do |campaign|
+          = link_to campaign.name, campaign_path(campaign), class: 'btn btn-info bottom-buffer'
+
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        = link_to "#{pluralize(@user.played_campaigns.count, 'campaign')} played", '#played-campaigns-list', data: { toggle: 'collapse', parent: '#accordion' }
+
+    #played-campaigns-list.panel-collapse.collapse
+      .panel-body
+        - @user.played_campaigns.each do |campaign|
+          = link_to campaign.name, campaign_path(campaign), class: 'btn btn-info bottom-buffer'

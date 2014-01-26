@@ -12,16 +12,15 @@ describe 'User show page' do
   it { should have_link 'Profile', user_path(user) }
   it { should have_link 'Sign Out' }
   it { should_not have_link 'Login with Google' }
-  it { should have_title user.name }
-  it { should have_content 'Gamemastered' }
-  it { should have_content 'Played' }
+  it { should have_title full_title(user.name) }
 
   context 'with gmd campaigns' do
     let(:user) { create(:user_with_gmd_campaigns) }
     before { visit user_path(user) }
 
     it { should have_link "#{pluralize(user.gamemastered_campaigns.count,
-                          'campaign')}", href: '#' }
+                          'campaign')} gamemastered",
+                          href: '#gamemastered-campaigns-list' }
   end
 
   context 'with played campaigns' do
@@ -29,7 +28,8 @@ describe 'User show page' do
     before { visit user_path(user) }
 
     it { should have_link "#{pluralize(user.played_campaigns.count,
-                          'campaign')}", href: '#'}
+                          'campaign')} played",
+                          href: '#played-campaigns-list'}
   end
 
   after{ Warden.test_reset! }
