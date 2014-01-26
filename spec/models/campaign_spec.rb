@@ -12,6 +12,7 @@ describe Campaign do
     it { should respond_to :description }
     it { should respond_to :gamemaster }
     it { should respond_to :players }
+    it { should respond_to :power_level }
     it { should be_valid }
 
     context 'without a name' do

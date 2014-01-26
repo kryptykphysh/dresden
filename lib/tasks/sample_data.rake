@@ -19,13 +19,15 @@ namespace :db do
     end
 
     50.times do |n|
-      name          = Faker::Company.name
-      description   = Faker::Lorem.paragraphs(2).join("\n\n")
-      gamemaster_id = User.offset(rand(User.count)).pluck(:id).first
+      name            = Faker::Company.name
+      description     = Faker::Lorem.paragraphs(2).join("\n\n")
+      gamemaster_id   = User.offset(rand(User.count)).pluck(:id).first
+      power_level_id  = PowerLevel.all.pluck(:id).shuffle.first
       c = Campaign.create!(
         name:           name,
         description:    description,
-        gamemaster_id:  gamemaster_id
+        gamemaster_id:  gamemaster_id,
+        power_level_id: power_level_id
       )
       (User.all.shuffle[0..rand(1..4)] - [c.gamemaster]).each do |player|
         c.players << player

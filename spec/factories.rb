@@ -23,8 +23,18 @@ FactoryGirl.define do
     name            Faker::Company.name
     description     Faker::Lorem.paragraphs(2).join("\n\n")
     association     :gamemaster, factory: :user
-    # association     :players, factory: user
-    # association     :players, factory: user
-    # association     :players, factory: user
+    association     :power_level, factory: :power_level
+  end
+
+  factory :skill_level do
+    name     'Incompetant'
+    modifier -1
+  end
+
+  factory :power_level do
+    name          'Out of the Tank'
+    refresh       12
+    skill_points  40
+    association   :skill_cap, factory: :skill_level
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140125000301) do
+ActiveRecord::Schema.define(version: 20140126040527) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140125000301) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "gamemaster_id"
+    t.integer  "power_level_id"
   end
 
   add_index "campaigns", ["gamemaster_id"], name: "index_campaigns_on_gamemaster_id"
@@ -30,6 +31,15 @@ ActiveRecord::Schema.define(version: 20140125000301) do
 
   add_index "campaigns_players", ["campaign_id", "user_id"], name: "index_campaigns_players_on_campaign_id_and_user_id", unique: true
 
+  create_table "power_levels", force: true do |t|
+    t.string   "name"
+    t.integer  "refresh"
+    t.integer  "skill_points"
+    t.integer  "skill_cap_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
     t.text     "data"
@@ -39,6 +49,13 @@ ActiveRecord::Schema.define(version: 20140125000301) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
+  create_table "skill_levels", force: true do |t|
+    t.string   "name"
+    t.integer  "modifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
