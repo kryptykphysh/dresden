@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129113807) do
+ActiveRecord::Schema.define(version: 20140129201838) do
 
   create_table "aspects", force: true do |t|
     t.string   "name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140129113807) do
     t.string   "name"
     t.text     "description"
     t.integer  "high_concept_id"
-    t.integer  "trouble"
+    t.integer  "trouble_id"
     t.integer  "campaign_id"
     t.integer  "player_id"
     t.datetime "created_at"
