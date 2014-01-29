@@ -1,5 +1,12 @@
 Dresden::Application.routes.draw do
   
+  get "characters/index"
+  get "characters/show"
+  get "characters/new"
+  get "characters/create"
+  get "characters/edit"
+  get "characters/update"
+  get "characters/destroy"
   # devise_for :users
   devise_for :users,
     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

@@ -63,3 +63,28 @@ power_levels = PowerLevel.create(
     }
   ]
 )
+
+phases = Phase.create(
+  [
+    {
+      name:     'Background',
+      question: 'Where did you come from?'
+    },
+    {
+      name:     'Rising Conflict',
+      question: 'What shaped you?'
+    },
+    {
+      name:     'The Story',
+      question: 'What was your first adventure?'
+    },
+    {
+      name:     'Guest Starring',
+      question: 'Whose path have you crossed?'
+    },
+    {
+      name:     'Guest starring redux',
+      question: "Who else's path have you crossed?"
+    },
+  ]
+)

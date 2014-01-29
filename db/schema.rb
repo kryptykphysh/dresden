@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140126040527) do
+ActiveRecord::Schema.define(version: 20140129113807) do
+
+  create_table "aspects", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "aspects", ["name"], name: "index_aspects_on_name", unique: true
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -30,6 +38,39 @@ ActiveRecord::Schema.define(version: 20140126040527) do
   end
 
   add_index "campaigns_players", ["campaign_id", "user_id"], name: "index_campaigns_players_on_campaign_id_and_user_id", unique: true
+
+  create_table "character_phases", force: true do |t|
+    t.integer  "phase_id"
+    t.integer  "character_id"
+    t.integer  "aspect_id"
+    t.text     "content"
+    t.integer  "guest_star_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "character_phases", ["character_id", "phase_id"], name: "index_character_phases_on_character_id_and_phase_id", unique: true
+
+  create_table "characters", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "high_concept_id"
+    t.integer  "trouble"
+    t.integer  "campaign_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "played_by_id"
+  end
+
+  add_index "characters", ["name"], name: "index_characters_on_name", unique: true
+
+  create_table "phases", force: true do |t|
+    t.string   "name"
+    t.string   "question"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "power_levels", force: true do |t|
     t.string   "name"

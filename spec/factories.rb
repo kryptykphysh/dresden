@@ -37,4 +37,27 @@ FactoryGirl.define do
     skill_points  40
     association   :skill_cap, factory: :skill_level
   end
+
+  factory :aspect do
+    sequence(:name) { |n| "Complete Test Aspect #{n}" }
+  end
+
+  factory :phase do
+    name      'Character Phase 1'
+    question  'What is the meaning of life?'
+  end
+
+  factory :character_phase do
+    character
+    phase
+    aspect
+  end
+
+  factory :character do
+    name          Faker::Name.name
+    association   :played_by, factory: :user
+    association   :high_concept, factory: :aspect
+    association   :trouble, factory: :aspect
+    campaign
+  end
 end

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :played_campaigns,
                           class_name: 'Campaign',
                           join_table: :campaigns_players
+  has_many :characters
 
   default_scope { order(name: :asc) }
 

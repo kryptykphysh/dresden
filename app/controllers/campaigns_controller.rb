@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
 
   def index
     @campaigns = Campaign.all.includes(:gamemaster, :players).
-      paginate(page: params[:page], limit: 10)
+      paginate(page: params[:page], per_page: 10)
   end
 
   def show
