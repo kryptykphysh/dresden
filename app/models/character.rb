@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  before_save { |character| character.name = name.downcase }
+  before_validation { |character| character.name = name.downcase }
   after_create :add_character_phases
 
   belongs_to :high_concept, class_name: 'Aspect'
