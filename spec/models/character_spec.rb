@@ -16,6 +16,12 @@ describe Character do
     describe ':name' do
       its(:name) { should be_an_instance_of String }
 
+      describe 'should be titleized' do
+        before { character.valid? }
+
+        its(:name) { should == character.name.titleize }
+      end
+
       context 'without a name' do
         before { character.name = '' }
 

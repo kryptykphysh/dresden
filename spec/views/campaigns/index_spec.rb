@@ -19,4 +19,15 @@ describe 'Index Page' do
   it { should have_selector 'dt', text: 'Gamemaster' }
   it { should have_selector 'dt', text: 'Players'}
   it { should have_selector 'dt', text: 'Last Updated' }
+
+  context 'if logged in' do
+    let(:user) { create(:user) }
+
+    before do
+      login_as(user, scope: :user)
+      visit characters_path
+    end
+
+    it { should have_link('Create A New Character') }
+  end
 end

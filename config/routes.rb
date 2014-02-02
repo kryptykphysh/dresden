@@ -1,18 +1,11 @@
 Dresden::Application.routes.draw do
-  
-  get "characters/index"
-  get "characters/show"
-  get "characters/new"
-  get "characters/create"
-  get "characters/edit"
-  get "characters/update"
-  get "characters/destroy"
   # devise_for :users
   devise_for :users,
     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show]
   resources :campaigns
+  resources :characters
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

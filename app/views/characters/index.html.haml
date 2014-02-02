@@ -1,2 +1,10 @@
-%h1 Characters#index
-%p Find me in app/views/characters/index.html.haml
+- provide :title, 'Characters'
+
+%h1 Characters
+
+%h2= "#{pluralize(Character.count, 'character')} on system"
+= link_to 'Create A New Character', new_campaign_path, class: 'btn btn-primary inline' if current_user
+
+= will_paginate @campaigns
+= render @characters
+= will_paginate @campaigns

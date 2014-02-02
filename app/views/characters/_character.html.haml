@@ -1,0 +1,26 @@
+.panel.panel-default
+  .panel-heading
+    %h5
+      = link_to character.name, character
+  .panel-body
+    %dl.dl-horizontal
+      %dt Played By
+      %dd= character.played_by.name
+
+      %dt Description
+      %dd= simple_format(character.description)
+
+      - if character.campaign
+        %dt Power Level
+        %dd= character.campaign.power_level.name
+
+      - if character.high_concept
+        %dt High Concept
+        %dd= character.high_concept.name
+
+      - if character.trouble
+        %dt Trouble
+        %dd= character.trouble.name
+
+      %dt Last Updated
+      %dd= character.updated_at.strftime("%A, %F %H:%M")

@@ -10,9 +10,13 @@ class Character < ActiveRecord::Base
   has_many :aspects, through: :character_phases
   has_one :power_level, through: :campaign
 
-  validates :name,  presence: true,
-                    uniqueness: true
+  validates :name,  :name_is_unique,
+                    presence: true
   validates :played_by, presence: true
+
+  def name
+    read_attribute(:name).try(:titleize)
+  end
 
   private
 
@@ -23,5 +27,9 @@ class Character < ActiveRecord::Base
         character_id: self.id
       )
     end
+  end
+
+  def name_is_unique
+    Character.where("name = \"#{self.name.downcase}\"").count == 0
   end
 end

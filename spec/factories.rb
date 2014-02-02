@@ -54,7 +54,7 @@ FactoryGirl.define do
   end
 
   factory :character do
-    name          Faker::Name.name
+    sequence(:name) {|n| "#{Faker::Name.name}#{n}" }
     association   :played_by, factory: :user
     association   :high_concept, factory: :aspect
     association   :trouble, factory: :aspect

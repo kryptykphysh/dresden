@@ -14,7 +14,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch(%r{features/support/}) { :cucumber }
 end
 
-guard :rspec do
+guard :rspec, all_on_start: true do
   watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
     ["spec/routing/#{m[1]}_routing_spec.rb",
       "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
