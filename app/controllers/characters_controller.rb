@@ -3,7 +3,13 @@ class CharactersController < ApplicationController
   
   def index
     @characters = Character.all.
-      paginate(page: params[:page], per_page: 10)
+      paginate(page: params[:page], per_page: 10).
+      includes( :campaign,
+                :character_phases,
+                :power_level,
+                :played_by,
+                { character_phases: :phase }
+              )
   end
 
   def show
