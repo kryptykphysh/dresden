@@ -2,12 +2,12 @@ class CampaignsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
   def index
-    @campaigns = Campaign.all.includes(:gamemaster, :players).
+    @campaigns = Campaign.all.includes(:gamemaster, :players, :characters).
       paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @campaign = Campaign.includes(:gamemaster, :players).find(params[:id])
+    @campaign = Campaign.includes(:gamemaster, :players, :characters).find(params[:id])
   end
 
   def new

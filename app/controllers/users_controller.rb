@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:characters,
+                          :played_campaigns,
+                          :gamemastered_campaigns).
+                  find(params[:id])
   end
 end

@@ -11,6 +11,9 @@
       %dd= simple_format(character.description)
 
       - if character.campaign
+        %dt Campaign
+        %dd= link_to character.campaign.name, campaign_path(character.campaign)
+
         %dt Power Level
         %dd= character.campaign.power_level.name
 

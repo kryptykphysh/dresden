@@ -15,6 +15,11 @@
       %dt Gamemaster
       %dd= link_to campaign.gamemaster.name, user_path(campaign.gamemaster), class: 'btn btn-info btn-sm bottom-buffer'
 
+      %dt Characters
+      %dd
+        - campaign.characters.each do |character|
+          = link_to character.name, character_path(character), class: 'btn btn-info btn-sm bottom-buffer'
+
       %dt Players
       %dd
         - campaign.players.each do |player|
