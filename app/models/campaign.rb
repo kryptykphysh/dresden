@@ -8,7 +8,8 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :gamemaster, class_name: 'User'
   belongs_to :power_level
-  has_and_belongs_to_many :players,
-                          class_name: 'User',
-                          join_table: :campaigns_players
+  has_many :characters
+  has_many :players,  through: :characters,
+                      class_name: 'User',
+                      source: :played_by
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129201838) do
+ActiveRecord::Schema.define(version: 20140203101138) do
 
   create_table "aspects", force: true do |t|
     t.string   "name"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(version: 20140129201838) do
   end
 
   add_index "campaigns", ["gamemaster_id"], name: "index_campaigns_on_gamemaster_id"
-
-  create_table "campaigns_players", id: false, force: true do |t|
-    t.integer "campaign_id"
-    t.integer "user_id"
-  end
-
-  add_index "campaigns_players", ["campaign_id", "user_id"], name: "index_campaigns_players_on_campaign_id_and_user_id", unique: true
 
   create_table "character_phases", force: true do |t|
     t.integer  "phase_id"

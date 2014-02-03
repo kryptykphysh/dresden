@@ -14,7 +14,9 @@ FactoryGirl.define do
 
     factory :user_with_played_campaigns do
       after(:create) do |user|
-        create_list(:campaign, rand(1..5), players: [user])
+        rand(1..5).times do
+          create(:character, played_by: user)
+        end
       end
     end    
   end

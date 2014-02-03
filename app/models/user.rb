@@ -5,14 +5,15 @@ class User < ActiveRecord::Base
          :omniauthable, :database_authenticatable#, :registerable, :recoverable
 
   has_many  :gamemastered_campaigns,
-            class_name: 'Campaign',
-            foreign_key: 'gamemaster_id'
-  has_and_belongs_to_many :played_campaigns,
-                          class_name: 'Campaign',
-                          join_table: :campaigns_players
+              class_name: 'Campaign',
+              foreign_key: 'gamemaster_id'
   has_many  :characters,
-            class_name: 'Character',
-            foreign_key: 'played_by_id'
+              class_name: 'Character',
+              foreign_key: 'played_by_id'
+  has_many  :played_campaigns, 
+              through: :characters,
+              source: :played_by,
+              class_name: 'Campaign'
 
   default_scope { order(name: :asc) }
 
