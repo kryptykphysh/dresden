@@ -25,5 +25,13 @@
         %dt Trouble
         %dd= character.trouble.name
 
+      - character.character_phases.each do |character_phase|
+        %dt= character_phase.phase.name
+        %dd= character_phase.content
+
+        %dt= "#{character_phase.phase.name} aspect"
+        - if character_phase.aspect
+          %dd= character_phase.aspect.name
+
       %dt Last Updated
       %dd= character.updated_at.strftime("%A, %F %H:%M")
