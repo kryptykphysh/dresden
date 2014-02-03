@@ -22,3 +22,13 @@
       .panel-body
         - @user.played_campaigns.each do |campaign|
           = link_to campaign.name, campaign_path(campaign), class: 'btn btn-info bottom-buffer'
+
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        = link_to "#{pluralize(@user.characters.count, 'characters')} played", '#played-characters-list', data: { toggle: 'collapse', parent: '#accordion' }
+
+    #played-characters-list.panel-collapse.collapse
+      .panel-body
+        - @user.characters.each do |character|
+          = link_to character.name, character_path(character), class: 'btn btn-info bottom-buffer'

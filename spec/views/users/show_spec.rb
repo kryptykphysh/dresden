@@ -32,5 +32,20 @@ describe 'User show page' do
                           href: '#played-campaigns-list'}
   end
 
+  context 'with played characters' do
+    let(:user) { create(:user) }
+
+    before do
+      5.times do
+        create(:character, played_by: user)
+        visit user_path(user)
+      end
+    end
+
+    it { should have_link "#{pluralize(user.characters.count, 'character')}",
+          href: '#played-characters-list' }
+    
+  end
+
   after{ Warden.test_reset! }
 end
