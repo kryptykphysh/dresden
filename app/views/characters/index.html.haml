@@ -3,7 +3,7 @@
 %h1 Characters
 
 %h2= "#{pluralize(Character.count, 'character')} on system"
-= link_to 'Create A New Character', new_campaign_path, class: 'btn btn-primary inline' if current_user
+= link_to 'Create A New Character', new_campaign_path, class: 'btn btn-primary bottom-buffer' if current_user
 
 = will_paginate @campaigns
 = render @characters
