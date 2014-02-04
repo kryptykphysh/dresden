@@ -3,6 +3,16 @@ class Aspect < ActiveRecord::Base
 
   has_many :characters, through: :character_phases
 
-  validates :name,  presence: true,
-                    uniqueness: true
+  validates :name,  :name_is_unique,
+                    presence: true
+
+  def name
+    read_attribute(:name).try(:titleize)
+  end
+
+  private
+
+  def name_is_unique
+    Aspect.where("name = \"#{self.name.downcase}\"").count == 0
+  end
 end

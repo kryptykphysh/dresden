@@ -29,6 +29,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'childprocess'
   gem 'pry'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -40,7 +41,6 @@ end
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
 end
 

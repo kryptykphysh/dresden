@@ -5,7 +5,7 @@
   .panel-body
     %dl.dl-horizontal
       %dt Played By
-      %dd= character.played_by.name
+      %dd= link_to character.played_by.name, user_path(character.played_by)
 
       %dt Description
       %dd= simple_format(character.description)

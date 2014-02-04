@@ -57,6 +57,7 @@ FactoryGirl.define do
 
   factory :character do
     sequence(:name) {|n| "#{Faker::Name.name}#{n}" }
+    description   Faker::Lorem.paragraphs(2).join("\n\n")
     association   :played_by, factory: :user
     association   :high_concept, factory: :aspect
     association   :trouble, factory: :aspect

@@ -13,6 +13,13 @@ class CharactersController < ApplicationController
   end
 
   def show
+    @character = Character.
+      includes( :campaign,
+                :character_phases,
+                :power_level,
+                :played_by,
+                { character_phases: :phase }
+              ).find(params[:id])
   end
 
   def new
