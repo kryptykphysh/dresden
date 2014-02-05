@@ -62,5 +62,15 @@ FactoryGirl.define do
     association   :high_concept, factory: :aspect
     association   :trouble, factory: :aspect
     campaign
+
+    after(:create) do |character|
+      character.character_phases.each do |cp|
+        aspect = create(:aspect)
+        cp.update_attributes(
+          content: Faker::Lorem.paragraphs(2).join("\n\n"),
+          aspect_id: aspect.id
+        )
+      end
+    end
   end
 end
