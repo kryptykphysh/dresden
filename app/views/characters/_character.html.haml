@@ -7,9 +7,6 @@
       %dt Played By
       %dd= link_to character.played_by.name, user_path(character.played_by)
 
-      %dt Description
-      %dd= simple_format(character.description)
-
       - if character.campaign
         %dt Campaign
         %dd= link_to character.campaign.name, campaign_path(character.campaign)
@@ -25,13 +22,20 @@
         %dt Trouble
         %dd= character.trouble.name
 
+      %dt Description
+      %dd= simple_format(character.description)
+
+      %hr
+
       - character.character_phases.each do |character_phase|
         %dt= character_phase.phase.name
-        %dd= character_phase.content
+        %dd= simple_format(character_phase.content)
 
         %dt= "#{character_phase.phase.name} aspect"
         - if character_phase.aspect
           %dd= character_phase.aspect.name
+
+        %hr
 
       %dt Last Updated
       %dd= character.updated_at.strftime("%A, %F %H:%M")
