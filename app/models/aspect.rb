@@ -6,6 +6,8 @@ class Aspect < ActiveRecord::Base
   validates :name,  :name_is_unique,
                     presence: true
 
+  default_scope { order(name: :asc) }
+
   def name
     read_attribute(:name).try(:titleize)
   end

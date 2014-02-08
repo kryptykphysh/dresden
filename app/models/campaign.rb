@@ -5,6 +5,7 @@ class Campaign < ActiveRecord::Base
   validates :power_level_id, presence: true
 
   default_scope { order(updated_at: :desc) }
+  scope :by_name, -> { unscoped.order(name: :asc) }
 
   belongs_to  :gamemaster, class_name: 'User'
   belongs_to  :power_level

@@ -1,14 +1,16 @@
 class Character < ActiveRecord::Base
   before_validation { |character| character.name = name.downcase }
-  after_create :add_character_phases
+  #after_create :add_character_phases
 
   belongs_to :high_concept, class_name: 'Aspect'
   belongs_to :trouble, class_name: 'Aspect'
   belongs_to :campaign
   belongs_to :played_by, class_name: 'User'
-  has_many :character_phases
+  has_many :character_phases, dependent: :destroy, inverse_of: :character
   has_many :aspects, through: :character_phases
   has_one :power_level, through: :campaign
+
+  accepts_nested_attributes_for :character_phases
 
   validates :name,  :name_is_unique,
                     presence: true
@@ -30,6 +32,6 @@ class Character < ActiveRecord::Base
   end
 
   def name_is_unique
-    Character.where("name = \"#{self.name.downcase}\"").count == 0
+    !Character.find_by(name: self.name.downcase)
   end
 end

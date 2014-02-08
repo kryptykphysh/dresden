@@ -1,2 +1,5 @@
-%h1 Characters#edit
-%p Find me in app/views/characters/edit.html.haml
+- provide :title, @character.name
+
+%h1= @character.name
+
+= render partial: 'form'

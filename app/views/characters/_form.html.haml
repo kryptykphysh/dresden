@@ -1,0 +1,37 @@
+= form_for character, html: { class: 'form-horizontal', role: 'form' } do |f|
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :description, size: '60X12', class: 'form-control'
+  .form-group
+    = f.label :campaign_id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.collection_select :campaign_id, Campaign.by_name, :id, :name, { prompt: true }, { class: 'form-control' }
+  .form-group
+    = f.label :high_concept_id, 'High Concept', class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.collection_select :high_concept_id, Aspect.all, :id, :name, { prompt: true }, { class: 'form-control' }
+  .form-group
+    = f.label :trouble_id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.collection_select :trouble_id, Aspect.all, :id, :name, { prompt: true }, { class: 'form-control' }
+  
+
+  = f.fields_for :character_phases do |ff|
+    = ff.hidden_field :phase_id, value: ff.object.phase_id
+    .form-group
+      = ff.label :content, class: "col-sm-2 control-label"
+      .col-sm-10
+        = ff.text_area :content, size: "60X12", class: 'form-control'
+    .form-group
+      = ff.label :aspect_id, class: "col-sm-2 control-label"
+      .col-sm-10
+        = ff.collection_select :aspect_id, Aspect.all, :id, :name, { prompt: true }, { class: 'form-control' }
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

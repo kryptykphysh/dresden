@@ -1,2 +1,5 @@
-%h1 Characters#new
-%p Find me in app/views/characters/new.html.haml
+- provide :title, 'New Character'
+
+%h1 New Character
+
+= render partial: 'form', locals: { character: @character }
