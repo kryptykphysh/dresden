@@ -27,7 +27,6 @@ class CharactersController < ApplicationController
     Phase.all.pluck(:id).each do |phase_id|
       @character.character_phases.find_or_initialize_by(phase_id: phase_id)
     end
-    @character.character_phases.each { |cp| Rails.logger.info { p cp } }
   end
 
   def create
@@ -37,7 +36,6 @@ class CharactersController < ApplicationController
 
       if @character.valid?
         @character.save
-
         redirect_to character_path(@character)
       else
         render 'new'
@@ -49,6 +47,13 @@ class CharactersController < ApplicationController
 
   def edit
     @character = Character.find(params[:id])
+    unless @character.played_by == current_user
+      flash[:alert] = "Nice try, but this isn't your character."
+      redirect_to character_path(@character)
+    end
+    Phase.all.pluck(:id).each do |phase_id|
+      @character.character_phases.find_or_initialize_by(phase_id: phase_id)
+    end
   end
 
   def update

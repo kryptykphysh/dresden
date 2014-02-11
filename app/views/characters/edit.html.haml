@@ -2,4 +2,4 @@
 
 %h1= @character.name
 
-= render partial: 'form'
+= render partial: 'form', locals: { character: @character }
